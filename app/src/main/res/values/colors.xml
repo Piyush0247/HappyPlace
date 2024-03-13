@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="pink">#cdb4db</color>
+    <color name="anotherPink">#ffc8dd</color>
+    <color name="darkPink">#ffafcc</color>
+    <color name="ligthGreen">#bde0fe</color>
+    <color name="skyColor">#a2d2ff</color>
+    <color name="button_background_color">#a9def9</color>
+    <color name="item_happy_place_description_text_color">#606060</color>
+    <color name="detail_screen_description_text_color">#757575</color>
+    <color name="circular_image_border_color">#757575</color>
+
+    <color name="colorAccent">#adcbe3</color>
+</resources>

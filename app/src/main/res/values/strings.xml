@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">HappyPlaceApp</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="save">Save</string>
+    <string name="add_image">ADD IMAGE</string>
+    <string name="location">Location</string>
+    <string name="date">Date</string>
+    <string name="description">Description</string>
+    <string name="title">Title</string>
+    <string name="no_text_no_happy_place">No Happy Place Found Yet.Kindly Please add it </string>
+
+    <string name="image_content_description">image</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="google_maps_api_key">AIzaSyDTg5sl7Ra9L6_hufkU3ivifRDAaDwscQE</string>
+</resources>
