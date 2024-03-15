@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,13 +18,14 @@ import jain.piyush.happyplaceapp.activities.model.HappyPlaceModel
 import jain.piyush.happyplaceapp.activities.utiles.SwipeToEditCallback
 
 class MainActivity : AppCompatActivity() {
-
+    private var rv_happy_places_list : RecyclerView = findViewById(R.id.rv_happyPlace)
+    private var tv_no_records_available : TextView = findViewById(R.id.tv_happy_place_rc)
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var fadAddHAppyPlace : FloatingActionButton = findViewById(R.id.fadAddHAppyPlace)
-        fadAddHAppyPlace.setOnClickListener{
+       val fadAddHappyPlace : FloatingActionButton = findViewById(R.id.fadAddHAppyPlace)
+        fadAddHappyPlace.setOnClickListener{
             val intent = Intent(this, AddHappyPlace::class.java)
             startActivityForResult(intent, ADD_PLACE_ACTIVITY_REQUEST_CODE)
 
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         getHappyPlacesListFromLocalDB()
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -47,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         val dbHandler = DatabaseHandler(this)
 
-        val getHappyPlacesList = dbHandler.getHappyPlacesList()
+        val getHappyPlacesList = dbHandler.getHappyPlaceList()
 
         if (getHappyPlacesList.size > 0) {
             rv_happy_places_list.visibility = View.VISIBLE
@@ -69,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         placesAdapter.setOnClickListener(object :
             HappyPlacesAdapter.OnClickListener {
             override fun onClick(position: Int, model: HappyPlaceModel) {
-                val intent = Intent(this@MainActivity, HappyPlaceDetail::class.java)
+                val intent = Intent(this@MainActivity, HappyPlaceDetailActivity::class.java)
                 intent.putExtra(EXTRA_PLACE_DETAILS, model) // Passing the complete serializable data class to the detail activity using intent.
                 startActivity(intent)
             }

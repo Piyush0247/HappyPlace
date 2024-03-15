@@ -22,6 +22,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.Autocomplete
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.google.android.material.textfield.TextInputLayout
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -48,13 +52,9 @@ class AddHappyPlace : AppCompatActivity(), View.OnClickListener {
     private var mLatitude: Double = 0.0
     private var mLongitude: Double = 0.0
     private var mHappyPlaceDetail: HappyPlaceModel? = null
-    private  var title : TextInputLayout = findViewById(R.id.title)
     private  var name_of_place : EditText = findViewById(R.id.name_of_place)
-    private var description : TextInputLayout = findViewById(R.id.description)
     private var description_of_place : EditText = findViewById(R.id.description_of_place)
-    private var date : TextInputLayout = findViewById(R.id.date)
     private var date_of_place : EditText = findViewById(R.id.date_of_place)
-    private var location : TextInputLayout = findViewById(R.id.location)
     private var location_of_place : EditText = findViewById(R.id.location_of_place)
     private  var imageView : ImageView = findViewById(R.id.image_view)
     private  var add_image : TextView = findViewById(R.id.addImage)
@@ -175,7 +175,7 @@ class AddHappyPlace : AppCompatActivity(), View.OnClickListener {
     private fun locationFinder(){
         try {
             val fields = listOf(
-                Place.Field.ID,Place.Field.NAME,Place.Field.LAT_LNG,Place.Field.ADDRESS)
+                Place.Field.ID, Place.Field.NAME,Place.Field.LAT_LNG,Place.Field.ADDRESS)
             val intent = Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN,fields)
                 .build(this@AddHappyPlace)
             startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE)
@@ -200,7 +200,7 @@ class AddHappyPlace : AppCompatActivity(), View.OnClickListener {
                             savedImageToInternalStorage(selectedImageBitmap)
                         Log.e("Saved Image : ", "Path :: $savedImageToInternalStorage")
 
-                        imageView!!.setImageBitmap(selectedImageBitmap) // Set the selected image from GALLERY to imageView.
+                        imageView.setImageBitmap(selectedImageBitmap) // Set the selected image from GALLERY to imageView.
                     } catch (e: IOException) {
                         e.printStackTrace()
                         Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT)
@@ -215,11 +215,11 @@ class AddHappyPlace : AppCompatActivity(), View.OnClickListener {
                     savedImageToInternalStorage(thumbnail)
                 Log.e("Saved Image : ", "Path :: $savedImageToInternalStorage")
 
-                imageView!!.setImageBitmap(thumbnail) // Set to the imageView.
+                imageView.setImageBitmap(thumbnail) // Set to the imageView.
             }
         } else if (resultCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
             val place : Place = Autocomplete.getPlaceFromIntent(data!!)
-            location_of_place?.setText(place.address)
+            location_of_place.setText(place.address)
             mLatitude = place.latLng!!.latitude
             mLongitude = place.latLng!!.longitude
         }
