@@ -52,18 +52,25 @@ class AddHappyPlace : AppCompatActivity(), View.OnClickListener {
     private var mLatitude: Double = 0.0
     private var mLongitude: Double = 0.0
     private var mHappyPlaceDetail: HappyPlaceModel? = null
-    private  var name_of_place : EditText = findViewById(R.id.name_of_place)
-    private var description_of_place : EditText = findViewById(R.id.description_of_place)
-    private var date_of_place : EditText = findViewById(R.id.date_of_place)
-    private var location_of_place : EditText = findViewById(R.id.location_of_place)
-    private  var imageView : ImageView = findViewById(R.id.image_view)
-    private  var add_image : TextView = findViewById(R.id.addImage)
-    private var btnSaved : Button = findViewById(R.id.btnSaved)
+    private lateinit var name_of_place : EditText
+    private lateinit var description_of_place : EditText
+    private lateinit var date_of_place : EditText
+    private lateinit var location_of_place : EditText
+    private  lateinit var imageView : ImageView
+    private  lateinit var add_image : TextView
+    private lateinit var btnSaved : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_happy_place)
-        var toolbar_AHP : Toolbar = findViewById(R.id.toolbar_AHP)
+        location_of_place = findViewById(R.id.location_of_place)
+        date_of_place = findViewById(R.id.date_of_place)
+        description_of_place  = findViewById(R.id.description_of_place)
+        name_of_place = findViewById(R.id.name_of_place)
+        imageView  = findViewById(R.id.image_view)
+        add_image= findViewById(R.id.addImage)
+        btnSaved= findViewById(R.id.btnSaved)
+        val toolbar_AHP : Toolbar = findViewById(R.id.toolbar_AHP)
 
         setSupportActionBar(toolbar_AHP)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

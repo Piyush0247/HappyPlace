@@ -18,13 +18,16 @@ import jain.piyush.happyplaceapp.activities.model.HappyPlaceModel
 import jain.piyush.happyplaceapp.activities.utiles.SwipeToEditCallback
 
 class MainActivity : AppCompatActivity() {
-    private var rv_happy_places_list : RecyclerView = findViewById(R.id.rv_happyPlace)
-    private var tv_no_records_available : TextView = findViewById(R.id.tv_happy_place_rc)
+    private lateinit var  fadAddHappyPlace : FloatingActionButton
+    private  lateinit var rv_happy_places_list : RecyclerView
+    private lateinit var tv_no_records_available : TextView
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-       val fadAddHappyPlace : FloatingActionButton = findViewById(R.id.fadAddHAppyPlace)
+        rv_happy_places_list = findViewById(R.id.rv_happyPlace)
+        tv_no_records_available = findViewById(R.id.tv_happy_place_rc)
+        fadAddHappyPlace = findViewById(R.id.fadAddHAppyPlace)
         fadAddHappyPlace.setOnClickListener{
             val intent = Intent(this, AddHappyPlace::class.java)
             startActivityForResult(intent, ADD_PLACE_ACTIVITY_REQUEST_CODE)
