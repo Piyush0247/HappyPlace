@@ -1,7 +1,9 @@
 package jain.piyush.happyplaceapp.activities.Activites
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -11,10 +13,11 @@ import jain.piyush.happyplaceapp.activities.model.HappyPlaceModel
 
 
 class HappyPlaceDetailActivity : AppCompatActivity() {
-    private var toolbar_happy_place_detail : Toolbar = findViewById(R.id.toolbar_happy_place_detail)
-    private var  iv_place_image : ImageView = findViewById(R.id.iv_place_image)
-    private var  tv_description : TextView = findViewById(R.id.tv_description)
-    private var  tv_location : TextView = findViewById(R.id.tv_location)
+    private lateinit var btn_view_on_map : Button
+    private lateinit var toolbar_happy_place_detail : Toolbar
+    private  lateinit var  iv_place_image : ImageView
+    private lateinit var  tv_description : TextView
+    private lateinit var  tv_location : TextView
 
     /**
      * This function is auto created by Android when the Activity Class is created.
@@ -24,7 +27,11 @@ class HappyPlaceDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         // This is used to align the xml view to this class
         setContentView(R.layout.activity_happy_place_detail)
-
+        toolbar_happy_place_detail  = findViewById(R.id.toolbar_happy_place_detail)
+        tv_location = findViewById(R.id.tv_location)
+        iv_place_image= findViewById(R.id.iv_place_image)
+        btn_view_on_map = findViewById(R.id.btn_view_on_map)
+        tv_description = findViewById(R.id.tv_description)
         var happyPlaceDetailModel: HappyPlaceModel? = null
 
         if (intent.hasExtra(MainActivity.EXTRA_PLACE_DETAILS)) {
@@ -46,6 +53,12 @@ class HappyPlaceDetailActivity : AppCompatActivity() {
             iv_place_image.setImageURI(Uri.parse(happyPlaceDetailModel.image))
             tv_description.text = happyPlaceDetailModel.description
             tv_location.text = happyPlaceDetailModel.location
+
+            btn_view_on_map.setOnClickListener {
+                val intent = Intent(this,MapsActivity::class.java)
+                intent.putExtra(MainActivity.EXTRA_PLACE_DETAILS,happyPlaceDetailModel)
+                startActivity(intent)
+            }
         }
     }
 }

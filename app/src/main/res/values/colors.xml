@@ -11,6 +11,6 @@
     <color name="item_happy_place_description_text_color">#606060</color>
     <color name="detail_screen_description_text_color">#757575</color>
     <color name="circular_image_border_color">#757575</color>
-
+     <color name="Red">#ff0000</color>
     <color name="colorAccent">#adcbe3</color>
 </resources>

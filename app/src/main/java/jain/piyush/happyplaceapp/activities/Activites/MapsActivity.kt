@@ -10,12 +10,14 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import jain.piyush.happyplaceapp.R
+import jain.piyush.happyplaceapp.activities.model.HappyPlaceModel
 import jain.piyush.happyplaceapp.databinding.ActivityMapsBinding
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
+    private  var mHappyPlaceDetail : HappyPlaceModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +29,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        if (intent.hasExtra(MainActivity.EXTRA_PLACE_DETAILS)){
+            mHappyPlaceDetail = intent.getSerializableExtra(MainActivity.EXTRA_PLACE_DETAILS) as HappyPlaceModel
+        }
+        if (mHappyPlaceDetail != null){
+            setSupportActionBar(binding.toolbarMAp)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.title = mHappyPlaceDetail?.title
+            binding.toolbarMAp.setNavigationOnClickListener {
+                onBackPressed()
+            }
+        }
+
     }
 
     /**
@@ -42,8 +57,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val postion = LatLng(mHappyPlaceDetail!!.latitude,mHappyPlaceDetail!!.longitude)
+        mMap.addMarker(MarkerOptions().position(postion).title(mHappyPlaceDetail?.location))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(postion))
     }
 }

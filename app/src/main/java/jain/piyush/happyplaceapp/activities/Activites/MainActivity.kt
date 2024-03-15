@@ -15,6 +15,7 @@ import jain.piyush.happyplaceapp.R
 import jain.piyush.happyplaceapp.activities.Adapter.HappyPlacesAdapter
 import jain.piyush.happyplaceapp.activities.database.DatabaseHandler
 import jain.piyush.happyplaceapp.activities.model.HappyPlaceModel
+import jain.piyush.happyplaceapp.activities.utiles.SwipeToDelete
 import jain.piyush.happyplaceapp.activities.utiles.SwipeToEditCallback
 
 class MainActivity : AppCompatActivity() {
@@ -96,7 +97,20 @@ class MainActivity : AppCompatActivity() {
         val editItemTouchHelper = ItemTouchHelper(editSwipeHandler)
         editItemTouchHelper.attachToRecyclerView(rv_happy_places_list)
         // END
+
+        val deleteSwipehandler = object : SwipeToDelete(this@MainActivity){
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val adapter = rv_happy_places_list.adapter as HappyPlacesAdapter
+                adapter.notifyItemRemoved(viewHolder.adapterPosition)
+                getHappyPlacesListFromLocalDB()
+            }
+        }
+        val deleteTouchItemHelper = ItemTouchHelper(deleteSwipehandler)
+        deleteTouchItemHelper.attachToRecyclerView(rv_happy_places_list)
     }
+
+
+
 
     companion object{
         private const val ADD_PLACE_ACTIVITY_REQUEST_CODE = 1

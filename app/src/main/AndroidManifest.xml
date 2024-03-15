@@ -11,7 +11,8 @@
         android:maxSdkVersion="32" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" />
+        android:maxSdkVersion="32"
+        tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -23,7 +24,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:targetApi="31">
+        tools:targetApi="34">
 
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
@@ -38,11 +39,13 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY" />
+            android:value="@string/google_maps_api_key" />
 
         <activity
             android:name=".activities.Activites.MapsActivity"
             android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="fullSensor"
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".activities.Activites.AddHappyPlace"
@@ -59,6 +62,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.Activites.HappyPlaceDetailActivity"
+            android:theme="@style/customNoActionBarTheme"
+            android:screenOrientation="fullSensor">
+        </activity>
+
     </application>
 
 </manifest>

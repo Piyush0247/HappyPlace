@@ -16,6 +16,10 @@
         <item name="android:colorControlNormal">@color/white</item>
 
     </style>
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here -->
+    </style>
+
 
 
 </resources>
