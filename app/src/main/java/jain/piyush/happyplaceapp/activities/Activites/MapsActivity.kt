@@ -59,6 +59,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // Add a marker in Sydney and move the camera
         val postion = LatLng(mHappyPlaceDetail!!.latitude,mHappyPlaceDetail!!.longitude)
         mMap.addMarker(MarkerOptions().position(postion).title(mHappyPlaceDetail?.location))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(postion))
+        val latLongZoom = CameraUpdateFactory.newLatLngZoom(postion,15f)
+        googleMap.animateCamera(latLongZoom)
     }
 }

@@ -83,7 +83,6 @@ class MainActivity : AppCompatActivity() {
         })
         val editSwipeHandler = object : SwipeToEditCallback(this) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                // TODO (Step 5: Call the adapter function when it is swiped)
                 // START
                 val adapter = rv_happy_places_list.adapter as HappyPlacesAdapter
                 adapter.notifyEditItem(
